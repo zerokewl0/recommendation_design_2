@@ -1,0 +1,113 @@
+<!-- Entity List Declaration --> 
+
+#set ($entitylist = [$entity1,$entity2,$entity3,$entity4,$entity5,$entity6])
+#set ($entitybadgelist = [$entity1,$entity2,$entity3,$entity4,$entity5,$entity6])
+<!-- Container starts --> 
+
+<div id="recommendation-slider" class="row list-of-products list-of-target-carousel">
+
+    <tr>
+        <td height="20"></td>
+    </tr><!-- SPACER -->   
+
+    #set($counter = 0)
+    #foreach($entity in $entitylist)
+        #if($counter % 3 == 0)
+            <tr>
+                <td>
+                    <!-- *START* 2 column table  -->
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="contenttable" width="608">
+                        <!--<tr><td height="15px"></td></tr>-->
+                        <tbody>
+                            <tr>
+        #end
+
+        <!-- POD LEFT -->
+        <th align="center" class="column" style="padding-right: 0px;" width="33%">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td align="center" height="250">
+                            <table width="200px" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr valign="top">
+                                        <td width="180px"><a href="$entity.pageUrl?utm_content=Check_Adobe_Campaign_sanbox_with_A4T" target="_blank"><img width="180" height="224" src="$entity.thumbnailUrl"></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="heightAuto" valign="top" height="80" bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:normal;text-align:center; padding-left:10px; padding-right:10px;">$entity.name</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" bgcolor="#ffffff" height="1px" style="font-family:Arial, Helvetica, sans-serif; font-size:20px; font-weight:bold;text-align:center; padding-left:20px; padding-right:20px;"></td>
+                                    </tr>
+
+                                    #set($foo=$entity.wasPrice)    
+
+                                    #if($entity.wasPrice != "0.0" && $entity.wasPrice != 'null' && $entity.wasPrice != 'undefined' && $entity.wasPrice != "" && $entity.wasPrice != "%Target_wasPrice%")
+                                    #if($foo.contains("."))
+                                        <tr>
+                                            <td height="30px" bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:normal;text-align:center; padding-left:20px; padding-right:20px; color: #d71a20">WAS <strike id="wasPrice" class="wasPrice" >$entity.wasPrice</strike><br></td>
+                                        </tr>
+                                    #else
+                                        <tr>
+                                            <td height="30px" bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:normal;text-align:center; padding-left:20px; padding-right:20px; color: #d71a20">WAS <strike id="wasPrice" class="wasPrice" >$entity.wasPrice.00</strike><br></td>
+                                        </tr>
+                                    #end
+                                    #end
+
+                                    <tr>
+                                        <td bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold;text-align:center; padding-left:20px; padding-right:20px; color: #344384">€$entity.value<br><span style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:normal;text-align:center; padding-left:20px; padding-right:20px;"><sup>pro Stück</sup></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table width="180px" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="center">
+                                            <div>
+                                                <!--[if mso]>
+                                                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="$entity.pageUrl?utm_content=Check_Adobe_Campaign_sanbox_with_A4T" style="height:38px;v-text-anchor:middle;width:180px;" arcsize="50%" strokecolor="#FFC800" fillcolor="#FFC800">
+                                                    <w:anchorlock/>
+                                                    <center style="color:#344384;font-family:sans-serif;font-size:13px;font-weight:bold;">zum Produkt</center>
+                                                </v:roundrect>
+                                                <![endif]-->
+
+                                                <a href="$entity.pageUrl?utm_content=Check_Adobe_Campaign_sanbox_with_A4T" target="_blank" style="background-color:#FFC800;border:1px solid #FFC800;border-radius:20px;color:#344384;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:32px;text-align:center;text-decoration:none;width:140px;-webkit-text-size-adjust:none;mso-hide:all;">zum Produkt</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </th>
+
+        #set($counter = $counter + 1)
+        #if($counter % 3 == 0)
+            </tr><!-- *END* POD RIGHT --><!--1st row END-->
+                        </tbody>
+                    </table>
+                </td>
+            </tr><!-- PRODUCT ROW END -->
+
+            <tr>
+                <td height="20"></td>
+            </tr><!-- SPACER --> 
+        #end
+    #end
+
+    #if($counter % 3 != 0)
+        </tr><!-- *END* POD RIGHT --><!--1st row END-->
+            </tbody>
+        </table>
+    </td>
+</tr><!-- PRODUCT ROW END -->
+
+<tr>
+    <td height="20"></td>
+</tr><!-- SPACER --> 
+    #end
+
+</div>
